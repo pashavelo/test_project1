@@ -6,10 +6,12 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
-public class EatStreet_test {
+public class EatStreet_registration {
     protected static WebDriver driver;
 
     @Before
@@ -82,9 +84,9 @@ public class EatStreet_test {
         driver.findElement(By.xpath("//input[@id='email']")).clear();
 
         //Fill fields
-        driver.findElement(By.xpath("//input[@id='email']")).sendKeys("pashavelo+test2@gmail.com");
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
-        driver.findElement(By.xpath("//input[@id='passwordAgain']")).sendKeys("123456");
+        driver.findElement(By.xpath("//input[@id='email']")).sendKeys("pashavelo+test4@gmail.com");
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("1234567");
+        driver.findElement(By.xpath("//input[@id='passwordAgain']")).sendKeys("1234567");
 
         //Clicking button Sing up
         driver.findElement(By.xpath("//button[@id='signup']")).click();
@@ -102,42 +104,54 @@ public class EatStreet_test {
         driver.findElement(By.xpath("//input[@id='phoneNumber']")).clear();
         driver.findElement(By.xpath("//input[@id='phoneNumber']")).sendKeys("+380431111111");
         //Не разобрался как отметить чекбокс
-        //WebElement tcCheckbox=driver.findElement(By.xpath("//input[@id='showRestNotes']"));
-        //tcCheckbox.click();
+        //WebElement Checkbox=driver.findElement(By.xpath("//input[@id='showRestNotes']"));
+        //Checkbox.click();
 
         //Save changes
         driver.findElement(By.xpath("//input[@id='confirm-modal-btn']")).click();
 
         //Wait 3 seconds
-        driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
-
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//img[@class='logo-alternate']")).click();
+        driver.findElement(By.xpath("//a[@id='menu-my-account']")).click();
         //Trying to change password
-        //driver.findElement(By.id("change-password")).wait(5,);
-        driver.findElement(By.xpath("//a[@id='change-password']")).click();
+        WebElement changepassword = driver.findElement(By.xpath("//a[@id='change-password']"));
+        System.out.println(changepassword);
+        // Click the element
+        Thread.sleep((int) (3000));
+        changepassword.click();
 
 
 
+        //Change password
+        driver.findElement(By.xpath("//input[@id='currentPassword']")).sendKeys("1234567");
+        driver.findElement(By.xpath("//input[@id='newPassword']")).sendKeys("12345678");
+        driver.findElement(By.xpath("//input[@id='newPasswordConfirm']")).sendKeys("12345678");
+        driver.findElement(By.xpath("//input[@id='confirm-modal-btn']")).click();
 
+        //Singout
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        WebElement signout = driver.findElement(By.xpath("//a[@id='signout']"));
+        Thread.sleep((int) (3000));
+        signout.click();
+        System.out.println(driver.getTitle());
+            if (driver.getTitle().contains("EatStreet"))
+                System.out.println("Good");
+            else
+                System.out.println("Bad"+driver.getTitle());
+        //New Sing in
+        driver.findElement(By.xpath("//a[@id='menu-signin']")).click();
+        driver.findElement(By.xpath("//input[@id='email']")).sendKeys("pashavelo+test4@gmail.com");
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("12345678");
+        driver.findElement(By.xpath("//button[@id='signin']")).click();
+        System.out.println(driver.getTitle());
+            if (driver.getTitle().contains("EatStreet"))
+                System.out.println("Good");
+            else
+                System.out.println("Bad"+driver.getTitle());
 
-
-        //driver.findElement(By.xpath("//input[@id='currentPassword']")).sendKeys("123456");
-        //driver.findElement(By.xpath("//input[@id='newPassword']")).sendKeys("1234567");
-        //driver.findElement(By.xpath("//input[@id='newPasswordConfirm']")).sendKeys("1234567");
-        //driver.findElement(By.xpath("//input[@id='confirm-modal-btn']")).click();
-
-
-
-        //driver.findElement(By.xpath("//a[@id='signout']")).click();
-        //System.out.println(driver.getTitle());
-        //driver.findElement(By.xpath("//a[@id='menu-signin']")).click();
-        //driver.findElement(By.xpath("//input[@id='email']")).sendKeys("pashavelo+test1@gmail.com");
-        //driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
-        //driver.findElement(By.xpath("//button[@id='signin']")).click();
-
-
-
-
-
+        driver.findElement(By.xpath("//a[@id='menu-my-account']")).click();
+            System.out.println(driver.getTitle());
 
         driver.quit();
     }
