@@ -16,7 +16,7 @@ public class EatStreet_registration {
 
     @Before
     //Initialize the chrome driver
-    public void SetupTest () throws IOException {
+    public void Setup () throws IOException {
         System.setProperty("webdriver.chrome.driver", "/home/pasha/Документы/Course_QA_automation/chromedriver");
         driver= new ChromeDriver();
         //Open window in full size
@@ -120,8 +120,6 @@ public class EatStreet_registration {
         // Click the element
         Thread.sleep((int) (3000));
         changepassword.click();
-
-
 
         //Change password
         driver.findElement(By.xpath("//input[@id='currentPassword']")).sendKeys("1234567");
