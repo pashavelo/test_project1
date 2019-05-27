@@ -41,18 +41,20 @@
             <artifactId>selenium-firefox-driver</artifactId>
             <version>3.141.59</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.0.2</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>3.141.59</version>
             <scope>compile</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.noveria.assertion/wait-until-asserter -->
+        <dependency>
+            <groupId>com.noveria.assertion</groupId>
+            <artifactId>wait-until-asserter</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
 
     </dependencies>
 
